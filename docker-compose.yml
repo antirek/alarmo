@@ -20,5 +20,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "./config/:/etc/telegram-alert"
     restart: always
+    links:
+      - mongodb
     depends_on:
       - mongodb
