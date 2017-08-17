@@ -1,0 +1,29 @@
+{
+  "name": "telegram-alert",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antirek/telegram-alert.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antirek/telegram-alert/issues"
+  },
+  "homepage": "https://github.com/antirek/telegram-alert#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "config": "^1.26.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.7",
+    "pug": "^2.0.0-rc.3",
+    "telegraf": "^3.9.0",
+    "tracer": "^0.8.9"
+  }
+}

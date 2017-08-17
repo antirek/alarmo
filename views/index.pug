@@ -1,0 +1,12 @@
+h4 Users
+
+table
+    thead
+        tr
+            th chat id
+            th phone
+    tbody
+        each user in users
+            tr
+                td=user.chatId
+                td=user.number
