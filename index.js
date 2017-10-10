@@ -38,7 +38,7 @@ telegramApp.command('start', (ctx) => {
                 .extra()
             );
         } else {
-            ctx.reply('already here')
+            ctx.reply('Вы уже зарегистрированы.')
         }
 
     });
@@ -54,11 +54,11 @@ telegramApp.on('contact', (ctx) => {
         
         return newUser.save()
             .then(() => {
-                ctx.reply('all good');
+                ctx.reply('Вы зарегистрированы.');
             })
             .catch(console.log);
     } else {
-        ctx.reply('not you :(');
+        ctx.reply('Вероятно, это не ваш номер :(');
     }
 });
 
