@@ -23,8 +23,9 @@ const modifyPhoneNumber = (number) => {
 let telegramApp = new Telegraf(config.token);
 telegramApp.use(session())
 
-
 telegramApp.command('start', (ctx) => {
+
+    
     let text = `Добрый день, ${getUserFullName(ctx.from)}!\n` + 
                `Нажмите кнопку "Отправить номер" внизу, чтобы начать.`;
 
@@ -40,7 +41,7 @@ telegramApp.command('start', (ctx) => {
                 .extra()
             );
         } else {
-            ctx.reply('Вы уже зарегистрированы.')
+            ctx.reply('Вы уже зарегистрированы.', Markup.removeKeyboard().extra());
         }
 
     });
