@@ -1,4 +1,4 @@
-FROM node:7.10
+FROM node:8.9
 
 COPY . /usr/src/telegram-alert
 

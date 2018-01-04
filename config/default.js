@@ -1,5 +1,5 @@
 module.exports = {
-    token: '309123389:AAHDX2-vdYe8LCrjtYbYlIQXnfYbxW41111',
-    db: 'mongodb://mongodb/telegram_alert',
+    token: '388736713:AAHwx57S-SecS0cAxc2nK4RrGYsLDFobwps',
+    db: 'mongodb://127.0.0.1/telegram_alert',
     port: 3030
 };

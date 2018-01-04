@@ -1,25 +1,27 @@
 const Telegraf = require('telegraf');
-const {Router, Extra, Markup, memorySession} = require('telegraf');
+const Extra = require('telegraf/extra')
+const Markup = require('telegraf/markup')
+const session = require('telegraf/session')
 
 const console = require('tracer').colorConsole();
-const config = require('config');
 
+const config = require('config');
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const User = require('./lib/user');
 
 
-const getUserFullName = function (user) {
+const getUserFullName = (user) => {
     return user.last_name ? `${user.first_name} ${user.last_name}` : user.first_name;
 }
 
-const modifyPhoneNumber = function (number) {
+const modifyPhoneNumber = (number) => {
     return number.replace(/^\+/, '')
 }
 
 let telegramApp = new Telegraf(config.token);
-telegramApp.use(memorySession())
+telegramApp.use(session())
 
 
 telegramApp.command('start', (ctx) => {
@@ -38,7 +40,7 @@ telegramApp.command('start', (ctx) => {
                 .extra()
             );
         } else {
-            ctx.reply('already here')
+            ctx.reply('Вы уже зарегистрированы.')
         }
 
     });
@@ -54,11 +56,11 @@ telegramApp.on('contact', (ctx) => {
         
         return newUser.save()
             .then(() => {
-                ctx.reply('all good');
+                ctx.reply('Все хорошо. Вы зарегистрированы.', Markup.removeKeyboard().extra());
             })
             .catch(console.log);
     } else {
-        ctx.reply('not you :(');
+        ctx.reply('Вероятно, это не ваш номер :(');
     }
 });
 
