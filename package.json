@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,9 @@
     "pug": "^2.0.0-rc.3",
     "telegraf": "^3.9.0",
     "tracer": "^0.8.9"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0",
+    "request": "^2.83.0"
   }
 }

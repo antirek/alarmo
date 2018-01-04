@@ -69,42 +69,8 @@ telegramApp.on('contact', (ctx) => {
 telegramApp.startPolling();
 
 
-let expressApp = express();
 
-expressApp.set('views', __dirname + "/views");
-expressApp.set('view engine', 'pug');
+let httpServer = require('./lib/http');
+let http = new httpServer(User, telegramApp);
 
-expressApp.get('/', (req, res) => {
-    User.find({})
-        .then((users) => {
-            res.render('index', {users})
-        })
-        .catch((err) => {
-            console.log(err)
-            res.sendStatus(500)
-        })
-
-});
-
-expressApp.post('/send/:number', bodyParser.json(), (req, res) => {
-    let number = req.params.number
-    User.findOne({number: number})
-        .then((currentUser) => {
-            console.log('req from', number)
-
-            if (currentUser) {
-                telegramApp.telegram.sendMessage(currentUser.chatId, req.body.text)
-                res.sendStatus('200')
-            } else {
-                console.log('not found')
-                res.sendStatus('404')
-            }
-        })
-        .catch((err) => {
-            console.log(err)
-            res.sendStatus(500)
-        }) 
-    
-});
-
-expressApp.listen(config.port || 3000);
+http.expressApp.listen(config.port || 3000);
