@@ -4,15 +4,15 @@ const config = require('config');
 const Telegraf = require('telegraf');
 
 const User = require('./lib/user');
-let telegramApp = new Telegraf(config.token);
+let telegrafApp = new Telegraf(config.token);
 
 let telegramServer = require('./lib/telegram');
-let telegram = new telegramServer(telegramApp, User);
+let telegram = new telegramServer(telegrafApp, User);
 
-telegram.telegramApp.startPolling();
+telegram.telegrafApp.startPolling();
 
 let httpServer = require('./lib/http');
-let http = new httpServer(User, telegram.telegramApp);
+let http = new httpServer(User, telegram.telegrafApp);
 
 http.expressApp.listen(config.port, () => {
     console.log('http started on port', config.port);
