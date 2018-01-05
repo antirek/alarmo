@@ -2,21 +2,7 @@ const request = require('request');
 const httpServer = require('../lib/http');
 
 const config = {
-    port: '3333',
-    nodes: [
-        {
-            id: 1,
-            name: 'test.ru',
-            token: '1',
-            ami: {
-                port: 5038,
-                host: 'localhost',
-                username: 'ttt',
-                secret: '123456'
-            }
-        }
-    ],
-    baseRecordUrl: 'http://records/'
+    port: '3333'    
 };
 
 let UserModel = {
@@ -32,11 +18,15 @@ let UserModel = {
             }
         ]);
     },
-    findOne: () => {
-        return Promise.resolve({
-            chatId: 1, 
-            number: '791234'
-        });
+    findOne: ({number}) => {
+        if (number == '791234') {
+            return Promise.resolve({
+                chatId: 1,  
+                number: '791234'
+            });
+        } else {
+            return Promise.resolve(null);
+        }
     }
 };
 
@@ -56,14 +46,13 @@ describe('number', () => {
         var s = http.expressApp.listen(config.port, () => {
             let endpoint = 'http://localhost:' + config.port + '/';
             request.get(endpoint, (error, response) => {
-                //console.log(error, response.body)
                 expect(response.statusCode).toEqual(200);
                 s.close(done);
             });
         });
     });
 
-    it('should return 200 on post data', (done) => {
+    it('should return 200 on post data to exist phone number', (done) => {
         let http = new httpServer(UserModel, telegramApp);
         
         var s = http.expressApp.listen(config.port, () => {
@@ -71,8 +60,21 @@ describe('number', () => {
             let data = {text: 'test text'};
 
             request.post(endpoint,{body: data, json: true}, (error, response) => {
-                //console.log(error, response.body)
                 expect(response.statusCode).toEqual(200);
+                s.close(done);
+            });
+        });
+    });
+
+    it('should return 404 on post data to unexist phone number', (done) => {
+        let http = new httpServer(UserModel, telegramApp);
+        
+        var s = http.expressApp.listen(config.port, () => {
+            let endpoint = 'http://localhost:' + config.port + '/send/8989';
+            let data = {text: 'test text'};
+
+            request.post(endpoint,{body: data, json: true}, (error, response) => {
+                expect(response.statusCode).toEqual(404);
                 s.close(done);
             });
         });
