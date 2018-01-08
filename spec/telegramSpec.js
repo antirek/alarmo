@@ -2,8 +2,8 @@ const request = require('request');
 const telegramServer = require('../lib/telegram');
 const console = require('tracer').colorConsole();
 
-let UserModel = {
-    find: () => {
+class UserModel {
+    find () {
         return Promise.resolve([
             {
                 chatId: 1,
@@ -14,8 +14,9 @@ let UserModel = {
                 number: '739156'
             }
         ]);
-    },
-    findOne: ({chatId}) => {
+    };
+
+    findOne ({chatId}) {
         if (chatId == '11111111') {
             return Promise.resolve({
                 chatId: 1,  
@@ -24,7 +25,7 @@ let UserModel = {
         } else {
             return Promise.resolve(null);
         }
-    }
+    };
 };
 
 let from1 = {
@@ -53,16 +54,22 @@ let getCtx = (from) => {
         },
         reply: (text) => {
             cb(text);
+        },
+        message: {
+            contact: {
+                user_id: 11111111,
+                phone_number: '791234'
+            }
         }
     }
 }
 
 
-let getTelegrafApp = (ctx) => {
+let getTelegrafApp = (ctx1, ctx2) => {
     return {
         command: (param, callback) => {
             if (param == 'start') {
-                callback(ctx)
+                callback(ctx1)
             }
         },
         use: () => {
@@ -70,7 +77,7 @@ let getTelegrafApp = (ctx) => {
         },
         on: (param, callback) => {
             if (param == 'contact') {
-                //callback('')
+                //callback(ctx2)
             } 
         }
     }
@@ -78,7 +85,9 @@ let getTelegrafApp = (ctx) => {
 
 let Messages = {
     hello: "hello %s",
-    exist: "exist %s"
+    exist: "exist %s",
+    registered: 'registered %s',
+    notyournumber: 'notyournumber %s'
 }
 
 describe('number', () => {
@@ -89,7 +98,7 @@ describe('number', () => {
             expect(q).toEqual('hello 12 12');
             done();
         }
-        let http = new telegramServer(telegrafApp, UserModel, Messages);
+        let http = new telegramServer(telegrafApp, new UserModel(), Messages);
     });
 
     it('should detect exist user', (done) => {
@@ -99,7 +108,7 @@ describe('number', () => {
             expect(q).toEqual('exist 12 12');
             done();
         }
-        let http = new telegramServer(telegrafApp, UserModel, Messages);
+        let http = new telegramServer(telegrafApp, new UserModel(), Messages);
     });
 
 });

@@ -11,6 +11,8 @@ let telegramServer = require('./lib/telegram');
 let Messages = {
     hello: 'Добрый день, %s!\nНажмите кнопку "Отправить номер" внизу, чтобы начать.',
     exist: 'Вы уже зарегистрированы.',
+    registered: 'Все хорошо. Вы зарегистрированы.',
+    notyournumber: 'Вероятно, это не ваш номер :('
 }
 
 let telegram = new telegramServer(telegrafApp, User, Messages);
