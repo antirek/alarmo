@@ -23,7 +23,7 @@
     "express": "^4.15.4",
     "mongoose": "^4.11.7",
     "pug": "^2.0.0-rc.3",
-    "request-counter": "0.0.1",    
+    "request-counter": "0.0.1",
     "telegraf": "^3.9.0",
     "tracer": "^0.8.9"
   },

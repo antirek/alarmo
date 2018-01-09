@@ -41,7 +41,7 @@ let telegramApp = {
 
 describe('number', () => {
     it('should return 200 response code on index', (done) => {
-        let http = new httpServer(UserModel, telegramApp);
+        let http = new httpServer(telegramApp, UserModel);
         
         var s = http.expressApp.listen(config.port, () => {
             let endpoint = 'http://localhost:' + config.port + '/';
@@ -53,7 +53,7 @@ describe('number', () => {
     });
 
     it('should return 200 on post data to exist phone number', (done) => {
-        let http = new httpServer(UserModel, telegramApp);
+        let http = new httpServer(telegramApp, UserModel);
         
         var s = http.expressApp.listen(config.port, () => {
             let endpoint = 'http://localhost:' + config.port + '/send/791234';
@@ -67,7 +67,7 @@ describe('number', () => {
     });
 
     it('should return 404 on post data to unexist phone number', (done) => {
-        let http = new httpServer(UserModel, telegramApp);
+        let http = new httpServer(telegramApp, UserModel);
         
         var s = http.expressApp.listen(config.port, () => {
             let endpoint = 'http://localhost:' + config.port + '/send/8989';

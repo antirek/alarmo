@@ -1,6 +1,7 @@
 const request = require('request');
-const telegramServer = require('../lib/telegram');
 const console = require('tracer').colorConsole();
+const telegramStartHandler = require('./../lib/telegramStartHandler');
+const telegramContactHandler = require('./../lib/telegramContactHandler');
 
 class UserModel {
     find () {
@@ -25,6 +26,10 @@ class UserModel {
         } else {
             return Promise.resolve(null);
         }
+    };
+
+    save () {
+        return Promise.resolve();
     };
 };
 
@@ -64,25 +69,6 @@ let getCtx = (from) => {
     }
 }
 
-
-let getTelegrafApp = (ctx1, ctx2) => {
-    return {
-        command: (param, callback) => {
-            if (param == 'start') {
-                callback(ctx1)
-            }
-        },
-        use: () => {
-
-        },
-        on: (param, callback) => {
-            if (param == 'contact') {
-                //callback(ctx2)
-            } 
-        }
-    }
-}
-
 let Messages = {
     hello: "hello %s",
     exist: "exist %s",
@@ -90,25 +76,37 @@ let Messages = {
     notyournumber: 'notyournumber %s'
 }
 
-describe('number', () => {
+describe('telegram', () => {
     it('should request number', (done) => {
-        let telegrafApp = getTelegrafApp(getCtx(from1));
-        console.log(telegrafApp)
         cb = (q) => {
             expect(q).toEqual('hello 12 12');
             done();
         }
-        let http = new telegramServer(telegrafApp, new UserModel(), Messages);
+        telegramStartHandler(new UserModel(), Messages).route(getCtx(from1));
     });
 
     it('should detect exist user', (done) => {
-        let telegrafApp = getTelegrafApp(getCtx(from2));
-        console.log(telegrafApp)
         cb = (q) => {
             expect(q).toEqual('exist 12 12');
             done();
         }
-        let http = new telegramServer(telegrafApp, new UserModel(), Messages);
+        telegramStartHandler(new UserModel(), Messages).route(getCtx(from2));
+    });
+
+    it('should not save when number is not owner', (done) => {
+        cb = (q) => {
+            expect(q).toEqual('notyournumber 12 12');
+            done();
+        }
+        telegramContactHandler(UserModel, Messages).route(getCtx(from1));
+    });
+
+    it('should save new user', (done) => {
+        cb = (q) => {
+            expect(q).toEqual('registered 12 12');
+            done();
+        }
+        telegramContactHandler(UserModel, Messages).route(getCtx(from2));
     });
 
 });

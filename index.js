@@ -20,7 +20,7 @@ let telegram = new telegramServer(telegrafApp, User, Messages);
 telegram.telegrafApp.startPolling();
 
 let httpServer = require('./lib/http');
-let http = new httpServer(User, telegram.telegrafApp);
+let http = new httpServer(telegram.telegrafApp, User);
 
 http.expressApp.listen(config.port, () => {
     console.log('http started on port', config.port);
