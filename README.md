@@ -2,7 +2,7 @@
 
 Отправка уведомлений на telegram по номеру телефона (через бота).
 
-https://travis-ci.org/antirek/telegram-alert.svg?branch=master
+![](https://travis-ci.org/antirek/telegram-alert.svg?branch=master)
 
 ## Как работает?
 
