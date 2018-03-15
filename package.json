@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "test": "jasmine"
+    "start": "node index",
+    "test": "standard && jasmine"
   },
   "repository": {
     "type": "git",

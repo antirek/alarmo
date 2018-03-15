@@ -36,13 +36,13 @@ class UserModel {
 };
 
 let from1 = {
-  id: 1212121212,
+  id: '1212121212',
   last_name: '12',
   first_name: '12'
 }
 
 let from2 = {
-  id: 11111111,
+  id: '11111111',
   last_name: '12',
   first_name: '12'
 }
@@ -64,7 +64,7 @@ let getCtx = (from) => {
     },
     message: {
       contact: {
-        user_id: 11111111,
+        user_id: '11111111',
         phone_number: '791234'
       }
     }
