@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "jasmine": "^2.8.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "standard": "^11.0.1"
   }
 }

@@ -1,27 +1,27 @@
 
-const console = require('tracer').colorConsole();
-const config = require('config');
-const Telegraf = require('telegraf');
+const console = require('tracer').colorConsole()
+const config = require('config')
+const Telegraf = require('telegraf')
 
-const User = require('./lib/user');
-let telegrafApp = new Telegraf(config.token);
+const User = require('./lib/user')
+let telegrafApp = new Telegraf(config.token)
 
-let telegramServer = require('./lib/telegram');
+let TelegramServer = require('./lib/telegram')
 
 let Messages = {
-    hello: 'Добрый день, %s!\nНажмите кнопку "Отправить номер" внизу, чтобы начать.',
-    exist: 'Вы уже зарегистрированы.',
-    registered: 'Все хорошо. Вы зарегистрированы.',
-    notyournumber: 'Вероятно, это не ваш номер :('
+  hello: 'Добрый день, %s!\nНажмите кнопку "Отправить номер" внизу, чтобы начать.',
+  exist: 'Вы уже зарегистрированы.',
+  registered: 'Все хорошо. Вы зарегистрированы.',
+  notyournumber: 'Вероятно, это не ваш номер :('
 }
 
-let telegram = new telegramServer(telegrafApp, User, Messages);
+let telegram = new TelegramServer(telegrafApp, User, Messages)
 
-telegram.telegrafApp.startPolling();
+telegram.telegrafApp.startPolling()
 
-let httpServer = require('./lib/http');
-let http = new httpServer(telegram.telegrafApp, User, config.auth);
+let HttpServer = require('./lib/http')
+let http = new HttpServer(telegram.telegrafApp, User, config.auth)
 
 http.expressApp.listen(config.port, () => {
-    console.log('http started on port', config.port);
-});
+  console.log('http started on port', config.port)
+})
