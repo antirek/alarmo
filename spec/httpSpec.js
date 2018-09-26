@@ -10,11 +10,11 @@ let UserModel = {
   find: () => {
     return Promise.resolve([
       {
-        chatId: 1,
+        telegramChatId: 1,
         number: '791234'
       },
       {
-        chatId: 2,
+        telegramChatId: 2,
         number: '739156'
       }
     ])
@@ -22,7 +22,7 @@ let UserModel = {
   findOne: ({number}) => {
     if (number === '791234') {
       return Promise.resolve({
-        chatId: 1,
+        telegramChatId: 1,
         number: '791234'
       })
     } else {
@@ -33,8 +33,8 @@ let UserModel = {
 
 let telegramApp = {
   telegram: {
-    sendMessage: (chatId, text) => {
-      console.log(chatId, text)
+    sendMessage: (telegramChatId, text) => {
+      console.log(telegramChatId, text)
     }
   }
 }
@@ -65,7 +65,7 @@ describe('number', () => {
     let http = new HttpServer(telegramApp, UserModel)
 
     var s = http.expressApp.listen(config.port, () => {
-      let endpoint = 'http://localhost:' + config.port + '/send/791234'
+      let endpoint = 'http://localhost:' + config.port + '/send/telegram/791234'
       let data = {text: 'test text'}
 
       request.post(endpoint, {body: data, json: true}, (error, response) => {
@@ -82,7 +82,7 @@ describe('number', () => {
     let http = new HttpServer(telegramApp, UserModel)
 
     var s = http.expressApp.listen(config.port, () => {
-      let endpoint = 'http://localhost:' + config.port + '/send/8989'
+      let endpoint = 'http://localhost:' + config.port + '/send/telegram/8989'
       let data = {text: 'test text'}
 
       request.post(endpoint, {body: data, json: true}, (error, response) => {
@@ -99,7 +99,7 @@ describe('number', () => {
     let http = new HttpServer(telegramApp, UserModel, auth)
 
     var s = http.expressApp.listen(config.port, () => {
-      let endpoint = 'http://localhost:' + config.port + '/send/8989'
+      let endpoint = 'http://localhost:' + config.port + '/send/telegram/8989'
       let data = {text: 'test text'}
 
       request.post(endpoint, {
@@ -123,7 +123,7 @@ describe('number', () => {
     let http = new HttpServer(telegramApp, UserModel, auth)
 
     var s = http.expressApp.listen(config.port, () => {
-      let endpoint = 'http://localhost:' + config.port + '/send/791234'
+      let endpoint = 'http://localhost:' + config.port + '/send/telegram/791234'
       let data = {text: 'test text'}
 
       request.post(endpoint, {

@@ -12,27 +12,27 @@ let Messages = {
   notyournumber: 'Вероятно, это не ваш номер :('
 }
 
-let telegram, viber;
+let telegram, viber
 
 if (config.telegram) {
-    let telegrafApp = new Telegraf(config.telegram.token)
-    let TelegramServer = require('./lib/telegram/telegram')
+  let telegrafApp = new Telegraf(config.telegram.token)
+  let TelegramServer = require('./lib/telegram/telegram')
 
-    telegram = new TelegramServer(telegrafApp, User, Messages)
-    telegram.telegrafApp.startPolling()
+  telegram = new TelegramServer(telegrafApp, User, Messages)
+  telegram.telegrafApp.startPolling()
 }
 
 if (config.viber) {
-    let ViberBot = require('./lib/viber/viber');
-    viber = new ViberBot(User);
+  let ViberBot = require('./lib/viber/viber')
+  viber = new ViberBot(User)
 }
 
-let HttpServer = require('./lib/http');
+let HttpServer = require('./lib/http')
 
 let sender = {
-    telegramApp: config.telegram ? telegram.telegrafApp : null,
-    viber: config.viber ? viber.bot : null
-};
+  telegramApp: config.telegram ? telegram.telegrafApp : null,
+  viber: config.viber ? viber.bot : null
+}
 
 let http = new HttpServer(sender, User, config.auth)
 

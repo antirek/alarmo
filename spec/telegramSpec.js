@@ -2,27 +2,27 @@
 
 // const request = require('request')
 // const console = require('tracer').colorConsole()
-const telegramStartHandler = require('./../lib/telegramStartHandler')
-const telegramContactHandler = require('./../lib/telegramContactHandler')
+const telegramStartHandler = require('./../lib/telegram/telegramStartHandler')
+const telegramContactHandler = require('./../lib/telegram/telegramContactHandler')
 
 class UserModel {
   find () {
     return Promise.resolve([
       {
-        chatId: 1,
+        telegramChatId: 1,
         number: '791234'
       },
       {
-        chatId: 2,
+        telegramChatId: 2,
         number: '739156'
       }
     ])
   };
 
-  findOne ({chatId}) {
-    if (chatId === '11111111') {
+  findOne ({telegramChatId}) {
+    if (telegramChatId === '11111111') {
       return Promise.resolve({
-        chatId: 1,
+        telegramChatId: 11111111,
         number: '791234'
       })
     } else {
