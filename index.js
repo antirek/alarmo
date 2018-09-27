@@ -2,6 +2,7 @@
 const console = require('tracer').colorConsole()
 const config = require('config')
 const Telegraf = require('telegraf')
+const HttpsProxyAgent = require('https-proxy-agent')
 
 const User = require('./lib/user')
 
@@ -19,7 +20,13 @@ let Messages = {
 let telegram, viber
 
 if (config.telegram) {
-  let telegrafApp = new Telegraf(config.telegram.token)
+  let options = config.telegram.proxyUrl ? {
+    telegram: {
+      agent: new HttpsProxyAgent(config.telegram.proxyUrl)
+    }
+  } : null
+
+  let telegrafApp = new Telegraf(config.telegram.token, options)
   let TelegramServer = require('./lib/telegram/telegram')
 
   telegram = new TelegramServer(telegrafApp, User, Messages)
@@ -35,7 +42,7 @@ if (config.viber) {
 let HttpServer = require('./lib/http')
 
 let sender = {
-  telegram: config.telegram ? telegram.telegrafApp : null,
+  telegram: config.telegram ? telegram.telegrafApp.telegram : null,
   viber: config.viber ? viber.bot : null
 }
 
