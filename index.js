@@ -29,7 +29,7 @@ if (config.telegram) {
   let telegrafApp = new Telegraf(config.telegram.token, options)
   let TelegramServer = require('./lib/telegram/telegram')
 
-  telegram = new TelegramServer(telegrafApp, User, Messages)
+  telegram = new TelegramServer(telegrafApp, store, Messages)
   telegram.telegrafApp.startPolling()
 }
 
