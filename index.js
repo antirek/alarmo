@@ -28,7 +28,8 @@ if (config.telegram) {
 
 if (config.viber) {
   let ViberBot = require('./lib/viber/viber')
-  viber = new ViberBot(store)
+  viber = new ViberBot(config.viber, store)
+  viber.start()
 }
 
 let HttpServer = require('./lib/http')
