@@ -5,6 +5,10 @@ const Telegraf = require('telegraf')
 
 const User = require('./lib/user')
 
+const Store = require('./lib/store')
+
+let store = new Store(User)
+
 let Messages = {
   hello: 'Добрый день, %s!\nНажмите кнопку "Отправить номер" внизу, чтобы начать.',
   exist: 'Вы уже зарегистрированы.',
@@ -24,17 +28,17 @@ if (config.telegram) {
 
 if (config.viber) {
   let ViberBot = require('./lib/viber/viber')
-  viber = new ViberBot(User)
+  viber = new ViberBot(store)
 }
 
 let HttpServer = require('./lib/http')
 
 let sender = {
-  telegramApp: config.telegram ? telegram.telegrafApp : null,
+  telegram: config.telegram ? telegram.telegrafApp : null,
   viber: config.viber ? viber.bot : null
 }
 
-let http = new HttpServer(sender, User, config.auth)
+let http = new HttpServer(sender, store, config.auth)
 
 http.expressApp.listen(config.port, () => {
   console.log('http started on port', config.port)

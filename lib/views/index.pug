@@ -3,10 +3,12 @@ h4 Users
 table
     thead
         tr
-            th chat id
+            th telegram chat id
+            th viber user id
             th phone
     tbody
         each user in users
             tr
-                td=user.chatId
+                td=user.telegramChatId
+                td=user.viberUserId
                 td=user.number

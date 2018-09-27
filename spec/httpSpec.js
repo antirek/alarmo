@@ -1,6 +1,7 @@
 /* global it, expect, describe */
 const request = require('request')
 const HttpServer = require('../lib/http')
+const Store = require('../lib/store')
 
 const config = {
   port: '3333'
@@ -47,7 +48,7 @@ let auth = {
 
 describe('number', () => {
   it('should return 200 response code on index', (done) => {
-    let http = new HttpServer(telegramApp, UserModel)
+    let http = new HttpServer({telegramApp}, new Store(UserModel))
 
     var s = http.expressApp.listen(config.port, () => {
       let endpoint = 'http://localhost:' + config.port + '/'
@@ -62,7 +63,7 @@ describe('number', () => {
   })
 
   it('should return 200 on post data to exist phone number', (done) => {
-    let http = new HttpServer(telegramApp, UserModel)
+    let http = new HttpServer(telegramApp, new Store(UserModel))
 
     var s = http.expressApp.listen(config.port, () => {
       let endpoint = 'http://localhost:' + config.port + '/send/telegram/791234'
@@ -79,7 +80,7 @@ describe('number', () => {
   })
 
   it('should return 404 on post data to unexist phone number', (done) => {
-    let http = new HttpServer(telegramApp, UserModel)
+    let http = new HttpServer(telegramApp, new Store(UserModel))
 
     var s = http.expressApp.listen(config.port, () => {
       let endpoint = 'http://localhost:' + config.port + '/send/telegram/8989'
@@ -96,7 +97,7 @@ describe('number', () => {
   })
 
   it('should return 404 on auth', (done) => {
-    let http = new HttpServer(telegramApp, UserModel, auth)
+    let http = new HttpServer(telegramApp, new Store(UserModel), auth)
 
     var s = http.expressApp.listen(config.port, () => {
       let endpoint = 'http://localhost:' + config.port + '/send/telegram/8989'
@@ -120,7 +121,7 @@ describe('number', () => {
   })
 
   it('should return 200 on auth', (done) => {
-    let http = new HttpServer(telegramApp, UserModel, auth)
+    let http = new HttpServer(telegramApp, new Store(UserModel), auth)
 
     var s = http.expressApp.listen(config.port, () => {
       let endpoint = 'http://localhost:' + config.port + '/send/telegram/791234'
