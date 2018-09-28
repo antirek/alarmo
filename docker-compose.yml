@@ -1,7 +1,7 @@
 version: '2'
 services:
   mongodb:
-    image: mongo:3.4
+    image: mongo:4.0
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "./data/mongodb/db:/data/db"
@@ -9,16 +9,16 @@ services:
     ports:
       - "27017:27017"
 
-  telegram-alert:
-    build: ./
+  alarmo:
+    image: antirek/alarmo
     ports:
       - "3030:3030"
     environment:
       - NODE_ENV=default
-      - NODE_CONFIG_DIR=/etc/telegram-alert
+      - NODE_CONFIG_DIR=/etc/alarmo
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
-      - "./config/:/etc/telegram-alert"
+      - "./config/:/etc/alarmo"
     restart: always
     links:
       - mongodb

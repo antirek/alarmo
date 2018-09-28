@@ -1,6 +1,6 @@
-# telegram-alert
+# alarmo
 
-Отправка уведомлений на telegram по номеру телефона (через бота).
+Отправка уведомлений на telegram, viber по номеру телефона (через бота).
 
 [![Build Status](https://travis-ci.org/antirek/telegram-alert.svg?branch=master)](https://travis-ci.org/antirek/telegram-alert)
 
@@ -14,7 +14,7 @@
 `````sh
 
 curl -X POST \
-  http://localhost:3030/send/<number> \
+  http://localhost:3030/send/89135292926 \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -d '{"text": "Ahtung!! Текст сообщения"}'
@@ -24,9 +24,9 @@ curl -X POST \
 ## Установка 
 
 
-> git clone https://github.com/antirek/telegram-alert.git
+> git clone https://github.com/antirek/alarmo.git
 
-> cd telegram-alert
+> cd alarmo
 
 > npm install
 
@@ -39,7 +39,10 @@ port - порт веб-интерфейса
 
 mongodb - параметры подключения к mongodb
 
-token - токен чат-бота телеграм, получите у @botfather
+telegram - настройки чат-бота телеграм, получите у @botfather
+
+viber - настройки чат-бота viber, получите в viber
+
 
 
 ## Fast start
