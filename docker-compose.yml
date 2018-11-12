@@ -10,7 +10,8 @@ services:
       - "27017:27017"
 
   alarmo:
-    image: antirek/alarmo
+    image: antirek/alarmo:0.0.2
+    command: alarmo
     ports:
       - "3030:3030"
     environment:

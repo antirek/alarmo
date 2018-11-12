@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 
 const console = require('tracer').colorConsole()
 const config = require('config')

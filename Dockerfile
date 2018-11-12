@@ -1,10 +1,5 @@
 FROM node:8.9
 
-RUN mkdir -p /usr/src/alarmo && \
-    git clone https://github.com/antirek/alarmo.git /usr/src/alarmo
+RUN npm install alarmo@0.0.2
 
-WORKDIR /usr/src/alarmo
-
-RUN npm install
-
-CMD [ "npm", "start" ]
+CMD ["alarmo"]
