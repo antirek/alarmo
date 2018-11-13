@@ -1,5 +1,5 @@
 FROM node:8.9
 
-RUN npm install alarmo@0.0.2
+RUN npm install -g alarmo@0.0.2 
 
-CMD ["alarmo"]
+CMD ["/bin/sh", "-c", "alarmo"]
