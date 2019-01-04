@@ -1,7 +1,9 @@
 /* global it, expect, describe */
-const request = require('request')
-const HttpServer = require('../lib/http')
+const request = require('request');
+const HttpServer = require('../lib/http').HttpServer;
 const Store = require('../lib/store')
+
+//console.log('as', HttpServer);
 
 const config = {
   port: '3333'

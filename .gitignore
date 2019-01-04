@@ -60,3 +60,5 @@ typings/
 data
 
 config/default
+
+*.js
