@@ -1,9 +1,7 @@
 /* global it, expect, describe */
 const request = require('request');
 const HttpServer = require('../lib/http').HttpServer;
-const Store = require('../lib/store')
-
-//console.log('as', HttpServer);
+const Store = require('../lib/store').Store;
 
 const config = {
   port: '3333'
@@ -55,7 +53,7 @@ describe('number', () => {
     var s = http.expressApp.listen(config.port, () => {
       let endpoint = 'http://localhost:' + config.port + '/'
       request.get(endpoint, (error, response) => {
-        if (error) {
+        if (error) {  
           console.log(error.stack)
         }
         expect(response.statusCode).toEqual(200)

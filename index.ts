@@ -5,9 +5,9 @@ const config = require("config");
 const Telegraf = require("telegraf");
 const HttpsProxyAgent = require("https-proxy-agent");
 
-const User = require("./lib/user");
+const User = require("./lib/user").User;
 
-const Store = require("./lib/store");
+const Store = require("./lib/store").Store;
 
 let store = new Store(User);
 

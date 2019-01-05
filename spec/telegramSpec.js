@@ -4,7 +4,7 @@
 // const console = require('tracer').colorConsole()
 const telegramStartHandler = require('./../lib/telegram/telegramStartHandler')
 const telegramContactHandler = require('./../lib/telegram/telegramContactHandler')
-const Store = require('../lib/store')
+const Store = require('../lib/store').Store;
 
 class UserModelFindByTelegramChatId {
   findOne ({telegramChatId}) {
