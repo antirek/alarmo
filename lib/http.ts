@@ -8,7 +8,7 @@ const path = require("path");
 const TextMessage = require("viber-bot").Message.Text;
 
 class HttpServer {
-  expressApp: any;
+  public expressApp: any;
 
   constructor(sender: any, store: any, auth: any) {
     this.expressApp = express();
@@ -82,6 +82,6 @@ class HttpServer {
         });
     });
   }
-};
+}
 
-export { HttpServer }
+export { HttpServer };

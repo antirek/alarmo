@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "tsc && jasmine"
+    "test": "npm run build && jasmine",
+    "lint": "npx tslint -p tslint.json",
+    "lint-fix": "npx tslint -p tslint.json --fix"
   },
   "bin": {
     "alarmo": "./index.js"
