@@ -1,11 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const tracer = require("./httpConsole");
 const counter = require("request-counter");
 const basicAuth = require("express-basic-auth");
 const path = require("path");
 
 const TextMessage = require("viber-bot").Message.Text;
+
+const tracer = require("tracer").colorConsole({
+  preprocess: (data: any) => {
+    data.title = counter.current();
+  },
+});
 
 class HttpServer {
   public expressApp: any;
