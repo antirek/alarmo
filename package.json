@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "jasmine": "^2.8.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "typescript": "^3.2.2"
   }
 }
