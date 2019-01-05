@@ -10,7 +10,7 @@ const TextMessage = require("viber-bot").Message.Text;
 class HttpServer {
   expressApp: any;
 
-  constructor(sender: Object, store: Object, auth: Object) {
+  constructor(sender: any, store: any, auth: any) {
     this.expressApp = express();
 
     this.expressApp.set("views", path.join(__dirname, "/views"));
@@ -24,24 +24,24 @@ class HttpServer {
       }));
     }
 
-    this.expressApp.get("/", (req, res) => {
+    this.expressApp.get("/", (req: any, res: any) => {
       tracer.log("counter", counter.next());
       store.getUsers()
-        .then((users) => {
+        .then((users: any) => {
           tracer.log("list users", users);
           res.render("index", {users});
         })
-        .catch((err) => {
+        .catch((err: any) => {
           tracer.log(err);
           res.sendStatus(500);
         });
     });
 
-    this.expressApp.post("/send/telegram/:number", (req, res) => {
+    this.expressApp.post("/send/telegram/:number", (req: any, res: any) => {
       tracer.log("counter", counter.next());
       const reqNumber = req.params.number;
       store.getUserByNumber(reqNumber)
-        .then((currentUser) => {
+        .then((currentUser: any) => {
           tracer.log("send to telegram:", reqNumber, "text:", req.body.text);
           if (currentUser) {
             const options = {
@@ -55,13 +55,13 @@ class HttpServer {
             res.sendStatus("404");
           }
         })
-        .catch((err) => {
+        .catch((err: any) => {
           tracer.log(err);
           res.sendStatus(500);
         });
     });
 
-    this.expressApp.post("/send/viber/:number", (req, res) => {
+    this.expressApp.post("/send/viber/:number", (req: any, res: any) => {
       tracer.log("counter", counter.next());
       const reqNumber = req.params.number;
 
@@ -76,7 +76,7 @@ class HttpServer {
             res.sendStatus("404");
           }
         })
-        .catch((err) => {
+        .catch((err: any) => {
           tracer.log(err);
           res.sendStatus(500);
         });
