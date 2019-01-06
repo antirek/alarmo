@@ -18,7 +18,7 @@ class HttpServer {
   constructor(sender: any, store: any, auth: any) {
     this.expressApp = express();
 
-    this.expressApp.set("views", path.join(__dirname, "/views"));
+    this.expressApp.set("views", path.join(__dirname, "./../../src/views"));
     this.expressApp.set("view engine", "pug");
     this.expressApp.use(bodyParser.json());
 

@@ -2,8 +2,8 @@
 
 // const request = require('request')
 // const console = require('tracer').colorConsole()
-const Handler = require('./../lib/viber/viber').Handler;
-const Store = require('../lib/store').Store;
+const Handler = require('./../dist/lib/viber/viber').Handler;
+const Store = require('../dist/lib/store').Store;
 
 class UserModelFindByViberChatId {
   findOne ({viberUserId}) {

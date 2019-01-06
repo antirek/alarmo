@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./dist/index",
     "build": "tsc",
     "test": "npm run build && jasmine",
     "lint": "npx tslint -p tslint.json",
     "lint-fix": "npx tslint -p tslint.json --fix"
   },
   "bin": {
-    "alarmo": "./index.js"
+    "alarmo": "./dist/index.js"
   },
   "repository": {
     "type": "git",
