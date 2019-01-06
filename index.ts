@@ -6,8 +6,11 @@ const Telegraf = require("telegraf");
 const HttpsProxyAgent = require("https-proxy-agent");
 
 const User = require("./lib/user").User;
-
 const Store = require("./lib/store").Store;
+
+const HttpServer = require("./lib/http").HttpServer;
+const TelegramServer = require("./lib/telegram/telegram").TelegramServer;
+const ViberBot = require("./lib/viber/viber").ViberServer;
 
 let store = new Store(User);
 
@@ -29,26 +32,22 @@ if (config.telegram) {
   } : null;
 
   const telegrafApp = new Telegraf(config.telegram.token, options);
-  const TelegramServer = require("./lib/telegram/telegram");
 
   telegram = new TelegramServer(telegrafApp, store, Messages);
   telegram.telegrafApp.startPolling();
 }
 
 if (config.viber) {
-  const ViberBot = require("./lib/viber/viber");
   viber = new ViberBot(config.viber, store);
   viber.start();
 }
-
-let httpServer = require("./lib/http").HttpServer;
 
 let sender = {
   telegram: config.telegram ? telegram.telegrafApp.telegram : null,
   viber: config.viber ? viber.bot : null,
 };
 
-let http = new httpServer(sender, store, config.auth);
+let http = new HttpServer(sender, store, config.auth);
 
 http.expressApp.listen(config.port, () => {
   tracer.log("http started on port", config.port);
