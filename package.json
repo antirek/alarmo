@@ -1,6 +1,6 @@
 {
   "name": "alarmo",
-  "version": "0.0.2",
+  "version": "19.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antirek/telegram-alert.git"
+    "url": "git+https://github.com/antirek/alarmo.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/antirek/telegram-alert/issues"
+    "url": "https://github.com/antirek/alarmo/issues"
   },
-  "homepage": "https://github.com/antirek/telegram-alert#readme",
+  "homepage": "https://github.com/antirek/alarmo#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "config": "^1.26.2",
