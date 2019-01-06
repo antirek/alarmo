@@ -61,4 +61,6 @@ data
 
 config/default
 
-*.js
+lib/*.js
+lib/*/*.js
+index.js
