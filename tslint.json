@@ -5,7 +5,8 @@
     "rules": {
     	"semicolon": [true],
     	"no-var-requires": false,
-    	"object-literal-sort-keys": true
+    	"object-literal-sort-keys": false,
+    	"max-classes-per-file": [true, 5]
     },
     "rulesDirectory": []
 }

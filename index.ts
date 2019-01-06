@@ -10,7 +10,7 @@ const Store = require("./lib/store").Store;
 
 const HttpServer = require("./lib/http").HttpServer;
 const TelegramServer = require("./lib/telegram/telegram").TelegramServer;
-const ViberBot = require("./lib/viber/viber").ViberServer;
+const ViberServer = require("./lib/viber/viber").ViberServer;
 
 let store = new Store(User);
 
@@ -38,7 +38,7 @@ if (config.telegram) {
 }
 
 if (config.viber) {
-  viber = new ViberBot(config.viber, store);
+  viber = new ViberServer(config.viber, store);
   viber.start();
 }
 
