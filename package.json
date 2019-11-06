@@ -28,7 +28,7 @@
     "config": "^1.26.2",
     "express": "^4.16.3",
     "express-basic-auth": "^1.2.0",
-    "https-proxy-agent": "^2.2.1",
+    "https-proxy-agent": "^2.2.4",
     "mongoose": "^4.13.17",
     "pug": "^2.0.0-rc.3",
     "request-counter": "0.0.1",
