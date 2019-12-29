@@ -1,5 +1,5 @@
 module.exports = {
-  port: 3030,                   // порт API и веб-интерфейса
+  port: 3031,                   // порт API и веб-интерфейса
   db: 'mongodb://mongodb:27017/alarmo',
   viber: {
     token: '45637c36b7b1885b-9f679b1536fded62-ertirtiurytireyiuey',

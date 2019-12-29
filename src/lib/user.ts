@@ -2,7 +2,10 @@ const config = require("config");
 const mongoose = require("mongoose");
 mongoose.Promise = Promise;
 
-const db = mongoose.createConnection(config.db);
+const db = mongoose.createConnection(config.db, { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const userSchema = new mongoose.Schema({
   name: String,
   number: String,

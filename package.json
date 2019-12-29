@@ -29,7 +29,7 @@
     "express": "^4.16.3",
     "express-basic-auth": "^1.2.0",
     "https-proxy-agent": "^2.2.4",
-    "mongoose": "^4.13.17",
+    "mongoose": "^5.8.3",
     "pug": "^2.0.0-rc.3",
     "request-counter": "0.0.1",
     "telegraf": "^3.17.3",
